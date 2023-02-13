@@ -13,7 +13,7 @@ export default function FormDeposit() {
               Earn juicy 8% yield
             </span>
           </div>
-          <div className="flex justify-center flex-col gap-3">
+          <div className="flex justify-center flex-col gap-3 ">
             <span>Select the network to deposit from into Moonbeam network</span>
             <NetworkSelector
               selectedNetwork={selectedNetwork}
@@ -23,11 +23,11 @@ export default function FormDeposit() {
               <input
                 type="text"
                 placeholder="amount"
-                className="rounded-md bg-slate-300 placeholder-gray-500 text-gray-800 outline-none border-2 border-slate-500 px-3 py-2.5"
+                className="rounded-md bg-slate-200 hover:bg-slate-300 focus:bg-slate-300 placeholder-gray-500 text-gray-800 outline-none border-2 border-slate-500 px-3 py-2.5"
               />
               <button
                 type="submit"
-                className="rounded-md bg-slate-300 hover:bg-slate-400 hover:text-slate-100 text-gray-800 outline-none border-2 border-slate-500 px-3 py-2.5"
+                className="rounded-md bg-slate-200 hover:bg-slate-300 text-gray-800 outline-none border-2 border-slate-500 px-3 py-2.5"
               >
                 deposit
               </button>

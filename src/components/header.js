@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <div>
       <div className="relative m-4">
-        <div className="text-xl font- p-2">Moonyield</div>
+        <div className="text-xl font- p-2">moonyield</div>
         <ConnectKitButton.Custom>
           {({ isConnected, show, address, ensName }) => {
             return (
@@ -15,7 +15,7 @@ export default function Header() {
                 {isConnected
                   ? ensName ??
                     address.slice(0, 6) + "..." + address.slice(38, 42)
-                  : "Connect Wallet"}
+                  : "connect wallet"}
               </button>
             );
           }}
