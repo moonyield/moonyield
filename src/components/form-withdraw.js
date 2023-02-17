@@ -48,7 +48,7 @@ export default function FormWithdraw() {
                   value={toDeposit}
                   onChange={(e) => setToDeposit(e.target.value)}
                 />
-                <div className="absolute right-1 text-sm top-1/2 transform -translate-y-1/2 bg-slate-500 text-slate-200 font-bold px-1 py-2 rounded-md">
+                <div className="absolute right-1 text-sm top-1/2 transform -translate-y-1/2 bg-slate-500 text-slate-200 font-bold px-1.5 py-2 rounded-md">
                   axlUSDC
                 </div>
               </div>
