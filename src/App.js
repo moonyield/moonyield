@@ -9,8 +9,8 @@ const App = () => {
     <div className="font-space">
       <Header />
       <HeroSection />
-      <FormDeposit />
-      {/* <FormWithdraw /> */}
+      {/* <FormDeposit /> */}
+      <FormWithdraw />
     </div>
   );
 };

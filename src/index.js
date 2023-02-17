@@ -9,7 +9,8 @@ import { WagmiConfig, createClient } from "wagmi";
 import { ConnectKitProvider, getDefaultClient } from "connectkit";
 import { polygon, avalanche, arbitrum, fantom, moonbeam } from "wagmi/chains";
 
-const chains = [polygon, avalanche, arbitrum, fantom, moonbeam];
+// const chains = [avalanche, polygon, arbitrum, fantom, moonbeam];
+const chains = [avalanche, moonbeam];
 const client = createClient(
   getDefaultClient({
     appName: "moonyield",
