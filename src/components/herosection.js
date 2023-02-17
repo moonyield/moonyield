@@ -15,9 +15,11 @@ export default function HeroSection() {
         <div className="hover:bg-gray-100 drop-shadow-sm border hover:drop-shadow-md bg-gray-100/80 p-1.5 rounded-lg">
           <img alt="avax" src={Avax} className="h-8 w-8" />
         </div>
-        <div className="hover:bg-gray-100 drop-shadow-sm border hover:drop-shadow-md bg-gray-100/80 p-1.5 rounded-lg">
-          <img alt="matic" src={Matic} className="h-8 w-8" />
-        </div>
+        <Tooltip label="Coming Soon!">
+          <div className="cursor-not-allowed opacity-50 drop-shadow-sm border  bg-gray-100/60 p-1.5 rounded-lg">
+            <img alt="matic" src={Matic} className="h-8 w-8" />
+          </div>
+        </Tooltip>
         <Tooltip label="Coming Soon!">
           <div className="cursor-not-allowed opacity-50 drop-shadow-sm border  bg-gray-100/60 p-1.5 rounded-lg">
             <img alt="ftm" src={Ftm} className="h-8 w-8" />
