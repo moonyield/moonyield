@@ -75,7 +75,7 @@ export default function FormWithdraw() {
   return (
     <div>
       <Toaster />
-      <div className="flex flex-row rounded-md border-2 border-slate-400 mt-20 bg-slate-100 p-8 lg:ml-96 lg:mr-96 justify-center relative">
+      <div className="flex flex-row rounded-md border-2 border-slate-400 mt-20 bg-slate-100 p-8 lg:ml-72 lg:mr-72 justify-center relative">
         <div className="flex gap-12 justify-center">
           <div className="flex justify-center flex-col gap-3">
             <span>
@@ -91,7 +91,7 @@ export default function FormWithdraw() {
                 <input
                   type="number"
                   placeholder="amount"
-                  className="rounded-md w-full bg-slate-300 placeholder-gray-500 text-gray-800 outline-none border-2 border-slate-500 px-3 py-2.5"
+                  className="rounded-md w-full hover:text-gray-800 focus:text-slate-100  bg-slate-200 hover:bg-slate-300 focus:bg-slate-400 text-gray-800 outline-none border-2 border-slate-500 px-3 py-2.5"
                   value={toDeposit}
                   onChange={(e) => setToDeposit(e.target.value)}
                 />
@@ -101,7 +101,7 @@ export default function FormWithdraw() {
               </div>
               <button
                 type="submit"
-                className="rounded-md hover:text-slate-100 focus:text-slate-100  bg-slate-300 hover:bg-slate-400 focus:bg-slate-400 text-gray-800 outline-none border-2 border-slate-500 px-3 py-2.5"
+                className="rounded-md hover:text-gray-800 focus:text-slate-100  bg-slate-200 hover:bg-slate-300 focus:bg-slate-400 text-gray-800 outline-none border-2 border-slate-500 px-3 py-2.5"
               >
                 deposit
               </button>
@@ -150,7 +150,7 @@ export default function FormWithdraw() {
 
             <button
               onClick={() => handleWithdraw()}
-              className="rounded-md bg-slate-300 hover:text-slate-100 hover:bg-slate-400 text-gray-800 outline-none border-2 border-slate-500 px-3 py-2.5"
+              className="rounded-md hover:text-gray-800 focus:text-slate-100  bg-slate-200 hover:bg-slate-300 focus:bg-slate-400 text-gray-800 outline-none border-2 border-slate-500 px-3 py-2.5"
             >
               withdraw all
             </button>
