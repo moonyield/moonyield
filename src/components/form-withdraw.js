@@ -35,9 +35,13 @@ export default function FormWithdraw() {
 
   async function handleDeposit(e) {
     e.preventDefault();
+    if (chain.id !== depositNetwork.id) {
+      makeErrorToast(`Switch to ${depositNetwork.name} to continue.`);
+      return;
+    }
     setDepositInProcess(true);
     try {
-      const hash = await depositOnRemote(signer, toDeposit, toast);
+      const hash = await depositOnRemote(signer, toDeposit, makeErrorToast);
       console.log(hash);
       setDepositHash(hash);
     } catch {
@@ -102,7 +106,7 @@ export default function FormWithdraw() {
                 deposit
               </button>
               {depositInProcess ? (
-                <div className="text-white absolute bg-slate-800 bg-opacity-90 left-0 top-0 w-full h-full z-40">
+                <div className="text-white absolute bg-slate-800 bg-opacity-90 left-0 top-0 w-full h-full z-50">
                   {depositHash ? (
                     <div className="flex w-full h-full justify-center items-center">
                       <div className="text-center text-lg">

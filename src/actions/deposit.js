@@ -7,18 +7,27 @@ const contracts = {
   remoteDispatch: "0x2d1e57cd409Bd69F22fbEC690CE53739b39ff1E4",
 };
 
-async function depositOnRemote(signer, amount) {
+async function depositOnRemote(signer, amount, toaster) {
   console.log("depositing");
+  const user = signer._address;
   const axlUSDC = new Contract(contracts.axlUSDC, IERC20, signer);
   const RemoteDispatch = new Contract(
     contracts.remoteDispatch,
     RemoteDispatchABI,
     signer
   );
-  console.log(amount);
 
   const amountToDeposit = utils.parseUnits(String(amount), 6);
-  console.log(amountToDeposit);
+
+  const usdcBalance = await axlUSDC.balanceOf(user);
+  if (usdcBalance.lt(amountToDeposit)) {
+    toaster(
+      `Not enough axlUSDC balance. You have ${usdcBalance
+        .div(1e6)
+        .toString()} axlUSDC.`
+    );
+    throw Error("NOT ENOUGH axlUSDC");
+  }
 
   await axlUSDC
     .approve(RemoteDispatch.address, amountToDeposit)
