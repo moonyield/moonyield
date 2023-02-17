@@ -29,6 +29,7 @@ async function withdrawFromMoonbeam(signer, destination, toaster) {
   console.log("withdrawing...");
   const tx = await Hub.exitPosition(destination, sharesToWithdraw);
   console.log("withdrawn");
+  await tx.wait();
   console.log(tx);
 
   return tx.hash;
