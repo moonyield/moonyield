@@ -1,5 +1,5 @@
 import { useState } from "react";
-import NetworkSelector from "./NetworkSelector";
+import NetworkSelector from "./DepositNetworkSelector";
 
 export default function FormDeposit() {
   const [selectedNetwork, setSelectedNetwork] = useState("polygon");
