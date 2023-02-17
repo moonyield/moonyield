@@ -31,11 +31,13 @@ export default function FormWithdraw() {
 
   const [toDeposit, setToDeposit] = useState(5);
 
+  const makeErrorToast = (msg) => toast.error(msg);
+
   async function handleDeposit(e) {
     e.preventDefault();
     setDepositInProcess(true);
     try {
-      const hash = await depositOnRemote(signer, toDeposit);
+      const hash = await depositOnRemote(signer, toDeposit, toast);
       console.log(hash);
       setDepositHash(hash);
     } catch {
@@ -46,7 +48,11 @@ export default function FormWithdraw() {
   async function withdrawLogic() {
     setWithdrawInProcess(true);
     try {
-      const hash = await withdrawFromMoonbeam(signer, withdrawNetwork.name);
+      const hash = await withdrawFromMoonbeam(
+        signer,
+        withdrawNetwork.name,
+        makeErrorToast
+      );
       console.log(hash);
       setWithdrawHash(hash);
     } catch {
@@ -56,7 +62,7 @@ export default function FormWithdraw() {
 
   async function handleWithdraw() {
     if (chain.id !== 1284) {
-      toast.error("Switch to Moonbeam to withdraw.");
+      makeErrorToast("Switch to Moonbeam to withdraw.");
       return;
     }
     withdrawLogic();

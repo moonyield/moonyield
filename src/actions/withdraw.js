@@ -7,7 +7,7 @@ const contracts = {
   hub: "0xfDd41d5C2f63787101027196b1eCFC6DA2aaB964",
 };
 
-async function withdrawFromMoonbeam(signer, destination) {
+async function withdrawFromMoonbeam(signer, destination, toaster) {
   const Vault = new Contract(contracts.vault, IERC20, signer);
   const Hub = new Contract(contracts.hub, HubABI, signer);
 
@@ -17,7 +17,10 @@ async function withdrawFromMoonbeam(signer, destination) {
   console.log("fetching shares...");
   const sharesToWithdraw = await Vault.balanceOf(user);
   console.log(`shares: ${sharesToWithdraw}`);
-  if (sharesToWithdraw.eq(0)) throw Error("ZERO_SHARES");
+  if (sharesToWithdraw.eq(0)) {
+    toaster("No balance found to withdraw");
+    throw Error("ZERO_SHARES");
+  }
 
   console.log("approving...");
   await Vault.approve(Hub.address, sharesToWithdraw).then((tx) => tx.wait());
