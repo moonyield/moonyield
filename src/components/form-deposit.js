@@ -6,15 +6,18 @@ export default function FormDeposit() {
 
   return (
     <div>
-      <div className="flex flex-row rounded-md border-2 border-slate-400 mt-16 bg-slate-100 p-8 lg:ml-96 lg:mr-96 justify-center">
-        <div className="flex gap-12 justify-center">
-          <div className="mt-20 mr-12">
-            <span className="text-4xl font-semibold text-center">
+      <div className="flex relative flex-row rounded-md border-2 border-slate-400 mt-16 bg-slate-100 p-8 lg:ml-80 lg:mr-80 justify-center">
+        <div className="flex gap-24 space-x-16 justify-center">
+          <div className="mt-20 flex justify-center text-4xl font-semibold">
+            Earn juicy 8% yield
+            {/* <span className="text-4xl font-semibold">
               Earn juicy 8% yield
-            </span>
+            </span> */}
           </div>
           <div className="flex justify-center flex-col gap-3 ">
-            <span>Select the network to deposit from into Moonbeam network</span>
+            <span>
+              Select the network to deposit from into Moonbeam network
+            </span>
             <NetworkSelector
               selectedNetwork={selectedNetwork}
               setSelectedNetwork={setSelectedNetwork}
