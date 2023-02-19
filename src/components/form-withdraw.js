@@ -3,7 +3,14 @@ import { useState, useEffect } from "react";
 import NetworkSelector from "./DepositNetworkSelector";
 import WithdrawSelector from "./WithdrawNetworkSelector";
 import { useSigner, useNetwork, useSwitchNetwork } from "wagmi";
-import { avalanche, moonbeam } from "wagmi/chains";
+import {
+  avalanche,
+  moonbeam,
+  polygon,
+  fantom,
+  arbitrum,
+  bsc,
+} from "wagmi/chains";
 import depositOnRemote from "../actions/deposit";
 import withdrawFromMoonbeam from "../actions/withdraw";
 
@@ -145,7 +152,7 @@ export default function FormWithdraw() {
             <WithdrawSelector
               selectedNetwork={withdrawNetwork}
               setSelectedNetwork={setWithdrawNetwork}
-              networks={[avalanche]}
+              networks={[avalanche, moonbeam, polygon, fantom, arbitrum, bsc]}
             />
 
             <button
