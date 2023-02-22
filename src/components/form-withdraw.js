@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import NetworkSelector from "./DepositNetworkSelector";
 import WithdrawSelector from "./WithdrawNetworkSelector";
-import { useSigner, useNetwork, useSwitchNetwork } from "wagmi";
+import { useSigner, useNetwork } from "wagmi";
 import {
   avalanche,
   moonbeam,
@@ -19,14 +19,6 @@ import toast, { Toaster } from "react-hot-toast";
 export default function FormWithdraw() {
   const { data: signer } = useSigner();
   const { chain } = useNetwork();
-  // const { chains, error, isLoading, pendingChainId, switchNetwork } =
-  //   useSwitchNetwork({
-  //     onSuccess: withdrawLogic,
-  //     onError: () => {
-  //       setWithdrawInProcess(false);
-  //     },
-  //   });
-  // console.log(chain, error, isLoading, pendingChainId);
   const [depositNetwork, setDepositNetwork] = useState(avalanche);
   const [withdrawNetwork, setWithdrawNetwork] = useState(avalanche);
 
@@ -94,15 +86,15 @@ export default function FormWithdraw() {
               networks={[avalanche]}
             />
             <form className="flex gap-3 flex-col" onSubmit={handleDeposit}>
-              <div className="relative">
+              <div className="relative ">
                 <input
                   type="number"
                   placeholder="amount"
-                  className="rounded-md w-full hover:text-gray-800 focus:text-slate-100  bg-slate-200 hover:bg-slate-300 focus:bg-slate-400 text-gray-800 outline-none border-2 border-slate-500 px-3 py-2.5"
+                  className="rounded-md w-full hover:text-gray-800 focus:text-slate-800  bg-slate-200 hover:bg-slate-300 focus:bg-slate-300 text-gray-800 outline-none border-2 border-slate-500 px-3 py-2.5"
                   value={toDeposit}
                   onChange={(e) => setToDeposit(e.target.value)}
                 />
-                <div className="absolute right-1 text-sm top-1/2 transform -translate-y-1/2 bg-slate-500 text-slate-200 font-bold px-1.5 py-2 rounded-md">
+                <div className="absolute mr-0.5 right-1 text-sm top-1/2 transform -translate-y-1/2 bg-slate-500 text-slate-200 font-bold px-1.5 py-2 rounded-md">
                   axlUSDC
                 </div>
               </div>

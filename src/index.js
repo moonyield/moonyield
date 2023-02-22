@@ -7,7 +7,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { WagmiConfig, createClient } from "wagmi";
 
 import { ConnectKitProvider, getDefaultClient } from "connectkit";
-import { polygon, avalanche, arbitrum, fantom, moonbeam } from "wagmi/chains";
+import { avalanche, moonbeam } from "wagmi/chains";
 
 // const chains = [avalanche, polygon, arbitrum, fantom, moonbeam];
 const chains = [avalanche, moonbeam];
