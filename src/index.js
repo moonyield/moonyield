@@ -23,7 +23,7 @@ root.render(
   <ChakraProvider>
     <WagmiConfig client={client}>
       <ConnectKitProvider
-        theme="soft"
+        theme="midnight"
         customTheme={{
           "--ck-font-family": '"sans", "Space Grotesk", "light"',
         }}

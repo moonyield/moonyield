@@ -1,4 +1,4 @@
-import { Contract, BigNumber, utils } from "ethers";
+import { Contract } from "ethers";
 import IERC20 from "../abi/erc20.json";
 import HubABI from "../abi/cross-yield-hub.json";
 
@@ -33,24 +33,6 @@ async function withdrawFromMoonbeam(signer, destination, toaster) {
   console.log(tx);
 
   return tx.hash;
-
-  // const amountToDeposit = utils.parseUnits(String(amount), 6);
-  // console.log(amountToDeposit);
-
-  // await axlUSDC
-  //   .approve(RemoteDispatch.address, amountToDeposit)
-  //   .then((tx) => tx.wait());
-  // console.log("approved.");
-
-  // console.log("depositing...");
-  // const tx = await RemoteDispatch.deposit(amountToDeposit, {
-  //   value: utils.parseEther("0.05"),
-  // });
-
-  // console.log("deposited");
-  // console.log(tx);
-
-  // return tx.hash;
 }
 
 export default withdrawFromMoonbeam;

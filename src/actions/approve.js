@@ -7,8 +7,8 @@ const contracts = {
   remoteDispatch: "0x2d1e57cd409Bd69F22fbEC690CE53739b39ff1E4",
 };
 
-async function depositOnRemote(signer, amount, newBanner) {
-  console.log("depositing");
+async function approveOnRemote(signer, amount, newBanner) {
+  console.log("approving");
   const user = signer._address;
   const axlUSDC = new Contract(contracts.axlUSDC, IERC20, signer);
   const RemoteDispatch = new Contract(
@@ -30,20 +30,14 @@ async function depositOnRemote(signer, amount, newBanner) {
     throw Error("NOT ENOUGH axlUSDC");
   }
 
-  // await axlUSDC
-  //   .approve(RemoteDispatch.address, amountToDeposit)
-  //   .then((tx) => tx.wait());
-  // console.log("approved.");
-
-  console.log("depositing...");
-  const tx = await RemoteDispatch.deposit(amountToDeposit, {
-    value: utils.parseEther("0.05"),
+  await axlUSDC
+    .approve(RemoteDispatch.address, amountToDeposit)
+    .then((tx) => tx.wait());
+  newBanner({
+    message: `Approved axlUSDC for deposit.`,
+    status: "success",
   });
-
-  console.log("deposited");
-  console.log(tx);
-
-  return tx.hash;
+  console.log("approved.");
 }
 
-export default depositOnRemote;
+export default approveOnRemote;
