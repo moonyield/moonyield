@@ -3,7 +3,7 @@ import FormWithdraw from "./form-withdraw";
 import Notification from "./NotificationBanner";
 export default function Main() {
   return (
-    <div className="flex top-0 flex-col">
+    <div className="flex flex-col">
       <CurrentApy />
       <FormWithdraw />
       <Notification />
