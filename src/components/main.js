@@ -8,7 +8,7 @@ export default function Main() {
       {/* <UsdcBalance /> */}
       <CurrentApy />
       <FormWithdraw />
-      <Notification />
+      {/* <Notification /> */}
     </div>
   );
 }

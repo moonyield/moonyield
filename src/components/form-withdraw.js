@@ -27,7 +27,10 @@ export default function FormWithdraw() {
   const { chains, error, isLoading, pendingChainId, switchNetwork } =
     useSwitchNetwork();
   const [depositNetwork, setDepositNetwork] = useState(
-    chain == avalanche ? avalanche : chain == polygon ? polygon : avalanche
+    (() => {
+      if (depositChains.map((c) => c.id).includes(chain?.id)) return chain;
+      return depositChains[0];
+    })()
   );
   const [withdrawNetwork, setWithdrawNetwork] = useState(avalanche);
 
@@ -44,17 +47,6 @@ export default function FormWithdraw() {
   const [toDeposit, setToDeposit] = useState(5);
 
   const [state, newBanner] = BannerToast();
-
-  // useEffect(() => {
-  //   if (chain == undefined) {
-  //     return;
-  //   }
-  //   if (chain?.id !== depositNetwork?.id) {
-  //     console.log("deposit", depositNetwork);
-  //     console.log("chain", chain);
-  //     switchNetwork?.(depositNetwork.id);
-  //   }
-  // }, [depositNetwork]);
 
   async function handleDeposit(e) {
     e.preventDefault();
