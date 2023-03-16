@@ -147,7 +147,7 @@ export default function FormWithdraw() {
             <NetworkSelector
               selectedNetwork={depositNetwork}
               setSelectedNetwork={setDepositNetwork}
-              networks={[avalanche, polygon]}
+              networks={[avalanche, polygon, arbitrum]}
             />
             <div className="flex gap-3 flex-col">
               <div className="relative ">

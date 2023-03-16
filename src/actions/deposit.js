@@ -11,6 +11,10 @@ const contracts = {
     axlUSDC: "0x750e4C4984a9e0f12978eA6742Bc1c5D248f40ed",
     remoteDispatch: "0x84de1D32667d05833fb135535C8f8e79aF859549",
   },
+  42161: {
+    axlUSDC: "0xEB466342C4d449BC9f53A865D5Cb90586f405215",
+    remoteDispatch: "0x87A10BF4620667a985AD60261260082e8dD948E5",
+  },
 };
 
 async function depositOnRemote(signer, amount, newBanner, chainID) {
@@ -44,6 +48,7 @@ async function depositOnRemote(signer, amount, newBanner, chainID) {
   const gasToPay = {
     43114: "0.05",
     137: "0.3",
+    42161: "0.00015",
   };
 
   console.log("depositing...");

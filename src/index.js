@@ -7,10 +7,10 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { WagmiConfig, createClient } from "wagmi";
 
 import { ConnectKitProvider, getDefaultClient } from "connectkit";
-import { avalanche, moonbeam, polygon } from "wagmi/chains";
+import { avalanche, moonbeam, polygon, arbitrum } from "wagmi/chains";
 
 // const chains = [avalanche, polygon, arbitrum, fantom, moonbeam];
-const chains = [avalanche, moonbeam, polygon];
+const chains = [avalanche, moonbeam, polygon, arbitrum];
 const client = createClient(
   getDefaultClient({
     appName: "moonyield",
