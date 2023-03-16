@@ -3,16 +3,22 @@ import IERC20 from "../abi/erc20.json";
 import RemoteDispatchABI from "../abi/remote-dispatch";
 
 const contracts = {
-  axlUSDC: "0xfab550568c688d5d8a52c7d794cb93edc26ec0ec",
-  remoteDispatch: "0x2d1e57cd409Bd69F22fbEC690CE53739b39ff1E4",
+  43114: {
+    axlUSDC: "0xfab550568c688d5d8a52c7d794cb93edc26ec0ec",
+    remoteDispatch: "0x2d1e57cd409Bd69F22fbEC690CE53739b39ff1E4",
+  },
+  137: {
+    axlUSDC: "0x750e4C4984a9e0f12978eA6742Bc1c5D248f40ed",
+    remoteDispatch: "0x84de1D32667d05833fb135535C8f8e79aF859549",
+  },
 };
 
-async function approveOnRemote(signer, amount, newBanner) {
+async function approveOnRemote(signer, amount, newBanner, chainID) {
   console.log("approving");
   const user = signer._address;
-  const axlUSDC = new Contract(contracts.axlUSDC, IERC20, signer);
+  const axlUSDC = new Contract(contracts[chainID].axlUSDC, IERC20, signer);
   const RemoteDispatch = new Contract(
-    contracts.remoteDispatch,
+    contracts[chainID].remoteDispatch,
     RemoteDispatchABI,
     signer
   );

@@ -40,6 +40,7 @@ const NetworkSelector = ({ selectedNetwork, setSelectedNetwork, networks }) => {
             <div className="py-0 rounded-md">
               {networks.map((network) => (
                 <button
+                  key={network.id}
                   type="button"
                   className="block w-full text-center px-4 py-2 text-sm leading-5 rounded-md text-gray-200 hover:text-gray-300 hover:bg-gray-700 focus:outline-none focus:bg-gray-700 transition duration-150 ease-in-out"
                   onClick={() =>

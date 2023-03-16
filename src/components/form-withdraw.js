@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NetworkSelector from "./DepositNetworkSelector";
 import WithdrawSelector from "./WithdrawNetworkSelector";
-import { useSigner, useNetwork } from "wagmi";
+import { useSigner, useNetwork, useSwitchNetwork } from "wagmi";
 import {
   avalanche,
   moonbeam,
@@ -9,15 +9,11 @@ import {
   fantom,
   arbitrum,
   bsc,
-  polygonMumbai,
 } from "wagmi/chains";
 import depositOnRemote from "../actions/deposit";
 import withdrawFromMoonbeam from "../actions/withdraw";
 import approveOnRemote from "../actions/approve";
 import BannerToast from "./ToastBanner";
-
-import { Contract } from "ethers";
-import IERC20 from "../abi/erc20.json";
 
 const contracts = {
   vault: "0x9961CDF83F4Aa5805E933b94872ecD6f4a3CeCa7",
@@ -26,7 +22,11 @@ const contracts = {
 export default function FormWithdraw() {
   const { data: signer } = useSigner();
   const { chain } = useNetwork();
-  const [depositNetwork, setDepositNetwork] = useState(avalanche);
+  const { chains, error, isLoading, pendingChainId, switchNetwork } =
+    useSwitchNetwork();
+  const [depositNetwork, setDepositNetwork] = useState(
+    chain == avalanche ? avalanche : chain == polygon ? polygon : avalanche
+  );
   const [withdrawNetwork, setWithdrawNetwork] = useState(avalanche);
 
   const [depositInProcess, setDepositInProcess] = useState(false);
@@ -42,6 +42,17 @@ export default function FormWithdraw() {
   const [toDeposit, setToDeposit] = useState(5);
 
   const [state, newBanner] = BannerToast();
+
+  useEffect(() => {
+    if (chain == undefined) {
+      return;
+    }
+    if (chain?.id !== depositNetwork?.id) {
+      console.log("deposit", depositNetwork);
+      console.log("chain", chain);
+      switchNetwork?.(depositNetwork.id);
+    }
+  }, [depositNetwork]);
 
   // const user = signer._address;
   // const Vault = new Contract(contracts.vault, IERC20, signer);
@@ -60,7 +71,12 @@ export default function FormWithdraw() {
     }
     setDepositInProcess(true);
     try {
-      const hash = await depositOnRemote(signer, toDeposit, newBanner);
+      const hash = await depositOnRemote(
+        signer,
+        toDeposit,
+        newBanner,
+        depositNetwork.id
+      );
       console.log(hash);
       setDepositHash(hash);
     } catch {
@@ -80,7 +96,12 @@ export default function FormWithdraw() {
     }
     setApprovalInProcess(true);
     try {
-      const appHash = await approveOnRemote(signer, toDeposit, newBanner);
+      const appHash = await approveOnRemote(
+        signer,
+        toDeposit,
+        newBanner,
+        depositNetwork.id
+      );
       console.log(approvalHash);
       setApprovalHash(appHash);
       setApproved(true);
