@@ -30,7 +30,7 @@ export default function CurrentApy() {
           parseFloat(result.data.data.market.supplyRate) +
           parseFloat(result.data.data.market.supplyRewardNative) +
           parseFloat(result.data.data.market.supplyRewardProtocol);
-        console.log(apyValue);
+        // console.log(apyValue);
         setApy(apyValue.toFixed(2));
       } catch (error) {
         console.error(error);

@@ -15,6 +15,13 @@ import withdrawFromMoonbeam from "../actions/withdraw";
 import approveOnRemote from "../actions/approve";
 import BannerToast from "./ToastBanner";
 
+import { Contract } from "ethers";
+import IERC20 from "../abi/erc20.json";
+
+const contracts = {
+  vault: "0x9961CDF83F4Aa5805E933b94872ecD6f4a3CeCa7",
+};
+
 export default function FormWithdraw() {
   const { data: signer } = useSigner();
   const { chain } = useNetwork();
@@ -34,6 +41,11 @@ export default function FormWithdraw() {
   const [toDeposit, setToDeposit] = useState(5);
 
   const [state, newBanner] = BannerToast();
+
+  // const user = signer._address;
+  // const Vault = new Contract(contracts.vault, IERC20, signer);
+  // const vaultBalance = Vault.balanceOf(user);
+  // console.log(vaultBalance);
 
   async function handleDeposit(e) {
     e.preventDefault();
@@ -120,7 +132,7 @@ export default function FormWithdraw() {
                 <input
                   type="number"
                   placeholder="amount"
-                  className="rounded-md w-full bg-gray-800/40 hover:bg-gray-800/80 focus:bg-gray-800/80 text-gray-300 outline-none ring-[1.25px] ring-slate-500  px-3 py-2.5"
+                  className="rounded-md w-full bg-gray-800/40 hover:bg-gray-800/80 focus:bg-gray-800/80 text-gray-300 outline-none ring-[1.5px] ring-slate-500  px-3 py-2.5"
                   value={toDeposit}
                   onChange={(e) => setToDeposit(e.target.value)}
                 />
@@ -143,7 +155,7 @@ export default function FormWithdraw() {
                       id="approve-deposit"
                       onClick={handleApprove}
                       type="submit"
-                      className="rounded-md w-full focus:text-slate-100 bg-slate-800/40 hover:bg-slate-800/80 focus:bg-800/80 text-gray-300 outline-none ring-[1.25px] ring-slate-500 px-3 py-2.5"
+                      className="rounded-md w-full focus:text-slate-100 bg-slate-800/40 hover:bg-slate-800/80 focus:bg-800/80 text-gray-300 outline-none ring-[1.5px] ring-slate-500 px-3 py-2.5"
                     >
                       {approvalInProcess ? (
                         <div>
@@ -160,13 +172,7 @@ export default function FormWithdraw() {
                       type="submit"
                       className="rounded-md w-full focus:text-slate-100 bg-slate-800/40 hover:bg-slate-800/80 focus:bg-800/80 text-gray-300 outline-none ring-[1.25px] ring-slate-500 px-3 py-2.5"
                     >
-                      {depositInProcess ? (
-                        <div>
-                          <span className="loader"></span>
-                        </div>
-                      ) : (
-                        <div>Deposit</div>
-                      )}
+                      Deposit
                     </button>
                   )}
                 </div>
@@ -246,7 +252,7 @@ export default function FormWithdraw() {
             ) : (
               <button
                 onClick={() => handleWithdraw()}
-                className="rounded-md  focus:text-slate-100 bg-slate-800/40 hover:bg-slate-800/80 focus:bg-800/80 text-gray-300 outline-none ring-1 ring-slate-500 px-3 py-2.5"
+                className="rounded-md  focus:text-slate-100 bg-slate-800/40 hover:bg-slate-800/80 focus:bg-800/80 text-gray-300 outline-none ring-[1.5px] ring-slate-500 px-3 py-2.5"
               >
                 withdraw all
               </button>

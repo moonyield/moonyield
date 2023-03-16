@@ -25,7 +25,7 @@ const NetworkSelector = ({ selectedNetwork, setSelectedNetwork, networks }) => {
         <span className="rounded-md shadow-sm">
           <button
             type="button"
-            className="inline-flex justify-center w-full rounded-md ring-1 ring-slate-500 px-3 py-2.5 bg-gray-800/40 hover:bg-gray-800/80 text-l leading-5 font-medium text-gray-300 outline-none transition duration-150 ease-in-out"
+            className="inline-flex justify-center w-full rounded-md ring-[1.5px] ring-slate-500 px-3 py-2.5 bg-gray-800/40 hover:bg-gray-800/80 text-l leading-5 font-medium text-gray-300 outline-none transition duration-150 ease-in-out"
             onClick={() => setIsOpen(!isOpen)}
           >
             <div className="flex flex-row ml-2 mr-2">
