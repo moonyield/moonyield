@@ -15,12 +15,14 @@ import withdrawFromMoonbeam from "../actions/withdraw";
 import approveOnRemote from "../actions/approve";
 import BannerToast from "./ToastBanner";
 
-const contracts = {
-  vault: "0x9961CDF83F4Aa5805E933b94872ecD6f4a3CeCa7",
-};
+import useVaultBalance from "../actions/use-vault-balance";
+
+const depositChains = [avalanche, polygon, arbitrum];
 
 export default function FormWithdraw() {
   const { data: signer } = useSigner();
+  const vaultBalance = useVaultBalance(signer?._address);
+
   const { chain } = useNetwork();
   const { chains, error, isLoading, pendingChainId, switchNetwork } =
     useSwitchNetwork();
@@ -43,26 +45,20 @@ export default function FormWithdraw() {
 
   const [state, newBanner] = BannerToast();
 
-  useEffect(() => {
-    if (chain == undefined) {
-      return;
-    }
-    if (chain?.id !== depositNetwork?.id) {
-      console.log("deposit", depositNetwork);
-      console.log("chain", chain);
-      switchNetwork?.(depositNetwork.id);
-    }
-  }, [depositNetwork]);
-
-  // const user = signer._address;
-  // const Vault = new Contract(contracts.vault, IERC20, signer);
-  // const vaultBalance = Vault.balanceOf(user);
-  // console.log(vaultBalance);
+  // useEffect(() => {
+  //   if (chain == undefined) {
+  //     return;
+  //   }
+  //   if (chain?.id !== depositNetwork?.id) {
+  //     console.log("deposit", depositNetwork);
+  //     console.log("chain", chain);
+  //     switchNetwork?.(depositNetwork.id);
+  //   }
+  // }, [depositNetwork]);
 
   async function handleDeposit(e) {
     e.preventDefault();
     if (chain.id !== depositNetwork.id) {
-      // makeErrorToast(`Switch to ${depositNetwork.name} to continue.`);
       newBanner({
         message: `Switch to ${depositNetwork.name} to continue.`,
         type: "error",
@@ -85,9 +81,9 @@ export default function FormWithdraw() {
   }
 
   async function handleApprove(e) {
+    if (chain.id !== depositNetwork.id) switchNetwork?.(depositNetwork.id);
     e.preventDefault();
     if (chain.id !== depositNetwork.id) {
-      // makeErrorToast(`Switch to ${depositNetwork.name} to continue.`);
       newBanner({
         message: `Switch to ${depositNetwork.name} to continue.`,
         type: "error",
@@ -256,6 +252,14 @@ export default function FormWithdraw() {
             </div>
           </div>
           <div className="flex justify-start flex-col gap-3 pt-8">
+            {vaultBalance > 0 ? (
+              <span className="text-gray-200 text-lg">
+                Deposited in Moonyield:{" "}
+                <span className="font-bold underline decoration-dashed">
+                  {vaultBalance.toFixed(2)} $USDC
+                </span>
+              </span>
+            ) : null}
             <span className="text-gray-200">
               Select the network to withdraw in from Moonbeam network
             </span>
