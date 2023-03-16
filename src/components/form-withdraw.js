@@ -9,6 +9,7 @@ import {
   fantom,
   arbitrum,
   bsc,
+  polygonMumbai,
 } from "wagmi/chains";
 import depositOnRemote from "../actions/deposit";
 import withdrawFromMoonbeam from "../actions/withdraw";
@@ -125,7 +126,7 @@ export default function FormWithdraw() {
             <NetworkSelector
               selectedNetwork={depositNetwork}
               setSelectedNetwork={setDepositNetwork}
-              networks={[avalanche]}
+              networks={[avalanche, polygon]}
             />
             <div className="flex gap-3 flex-col">
               <div className="relative ">

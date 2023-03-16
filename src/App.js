@@ -13,9 +13,9 @@ const App = () => {
     scrollToRef.current.scrollIntoView({ behavior: "smooth" });
   };
   return (
-    <div className="font-space flex flex-col relative w-[100%] isolate  bg-black">
+    <div className="font-space flex flex-col relative w-[100%] isolate bg-black">
       <svg
-        className="absolute -inset-1 -z-10 h-full w-full stroke-gray-200/40 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
+        className="absolute -inset-1 -z-10 h-full w-full stroke-gray-200/20 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
         aria-hidden="true"
       >
         <defs>
@@ -75,8 +75,7 @@ const App = () => {
 
       <div className="h-[100vh]">
         <Header />
-
-        <div className="">
+        <div>
           <HeroSection onEnterApp={handleEnterApp} />
         </div>
       </div>
