@@ -16,7 +16,7 @@ import approveOnRemote from "../actions/approve";
 import BannerToast from "./ToastBanner";
 
 import useVaultBalance from "../actions/use-vault-balance";
-
+import { Tooltip } from "@chakra-ui/react";
 const depositChains = [avalanche, polygon, arbitrum];
 
 export default function FormWithdraw() {
@@ -151,13 +151,15 @@ export default function FormWithdraw() {
                 </div>
               </div>
               {!signer ? (
-                <button
-                  id="approve-deposit"
-                  type="submit"
-                  className="rounded-md disabled cursor-not-allowed  focus:text-slate-100 bg-slate-800/40 hover:bg-slate-800/80 focus:bg-800/80 text-gray-300 outline-none ring-[1.25px] ring-slate-500 px-3 py-2.5"
-                >
-                  Approve
-                </button>
+                <Tooltip label="Wallet not Connected !">
+                  <button
+                    id="approve-deposit"
+                    type="submit"
+                    className="rounded-md disabled cursor-not-allowed  focus:text-slate-100 bg-slate-800/40 hover:bg-slate-800/80 focus:bg-800/80 text-gray-300 outline-none ring-[1.25px] ring-slate-500 px-3 py-2.5"
+                  >
+                    Approve
+                  </button>
+                </Tooltip>
               ) : (
                 <div>
                   {!approved ? (
@@ -189,7 +191,7 @@ export default function FormWithdraw() {
               )}
 
               {depositInProcess ? (
-                <div className="text-white font-space rounded-t-2xl ease-in-out duration-200 rounded-b-md border-t-2 border-purple-800 absolute bg-black ring-1 ring-black left-0 bottom-0 w-full h-44 z-50">
+                <div className="text-white font-space rounded-t-2xl ease-in-out duration-200 rounded-b-md border-t-4 border-purple-800 absolute bg-[#111111] ring-1 ring-gray-100/10 left-0 bottom-0 w-full h-56 z-50">
                   {depositHash ? (
                     <div className="flex pt-6 px-2 ml-2  justify-start items-start">
                       <div className="text-start text-md">
@@ -243,74 +245,95 @@ export default function FormWithdraw() {
               ) : null}
             </div>
           </div>
-          <div className="flex justify-start flex-col gap-3 pt-8">
-            {vaultBalance > 0 ? (
-              <span className="text-gray-200 text-lg">
-                Deposited in Moonyield:{" "}
-                <span className="font-bold underline decoration-dashed">
-                  {vaultBalance.toFixed(2)} $USDC
-                </span>
-              </span>
-            ) : null}
-            <span className="text-gray-200">
-              Select the network to withdraw in from Moonbeam network
-            </span>
-            <WithdrawSelector
-              selectedNetwork={withdrawNetwork}
-              setSelectedNetwork={setWithdrawNetwork}
-              networks={[avalanche, moonbeam, polygon, fantom, arbitrum, bsc]}
-            />
-            {!signer ? (
-              <button
-                onClick={() => handleWithdraw()}
-                className="rounded-md disabled cursor-not-allowed  focus:text-slate-100 bg-slate-800/40 hover:bg-slate-800/80 focus:bg-800/80 text-gray-300 outline-none ring-1 ring-slate-500 px-3 py-2.5"
-              >
-                withdraw all
-              </button>
-            ) : (
-              <button
-                onClick={() => handleWithdraw()}
-                className="rounded-md  focus:text-slate-100 bg-slate-800/40 hover:bg-slate-800/80 focus:bg-800/80 text-gray-300 outline-none ring-[1.5px] ring-slate-500 px-3 py-2.5"
-              >
-                withdraw all
-              </button>
-            )}
+          {signer ? (
+            <div>
+              {vaultBalance > 0 ? (
+                <div className="flex justify-start flex-col gap-3 pt-8">
+                  {vaultBalance > 0 ? (
+                    <span className="text-gray-200 text-lg bg-gradient-to-r from-pink-400/30 to-violet-400/30 py-2 px-2 rounded-md">
+                      Deposited in Moonyield:{" "}
+                      <span className="font-bold  ">
+                        {vaultBalance.toFixed(2)} $USDC
+                      </span>
+                    </span>
+                  ) : null}
+                  <span className="text-gray-200">
+                    Select the network to withdraw in from Moonbeam network
+                  </span>
+                  <WithdrawSelector
+                    selectedNetwork={withdrawNetwork}
+                    setSelectedNetwork={setWithdrawNetwork}
+                    networks={[
+                      avalanche,
+                      moonbeam,
+                      polygon,
+                      fantom,
+                      arbitrum,
+                      bsc,
+                    ]}
+                  />
+                  {!signer ? (
+                    <button
+                      onClick={() => handleWithdraw()}
+                      className="rounded-md disabled cursor-not-allowed  focus:text-slate-100 bg-slate-800/40 hover:bg-slate-800/80 focus:bg-800/80 text-gray-300 outline-none ring-1 ring-slate-500 px-3 py-2.5"
+                    >
+                      withdraw all
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => handleWithdraw()}
+                      className="rounded-md  focus:text-slate-100 bg-slate-800/40 hover:bg-slate-800/80 focus:bg-800/80 text-gray-300 outline-none ring-[1.5px] ring-slate-500 px-3 py-2.5"
+                    >
+                      withdraw all
+                    </button>
+                  )}
 
-            {withdrawInProcess ? (
-              <div className="text-white absolute bg-slate-800 bg-opacity-90 left-0 top-0 w-full h-full z-40">
-                {withdrawHash ? (
-                  <div className="flex w-full h-full justify-center items-center">
-                    <div className="text-center text-lg">
-                      <p>
-                        Your cross-chain <b>withdrawal</b> has been sent
-                      </p>
-                      <p>
-                        Track transaction status{" "}
-                        <a
-                          href={`https://axelarscan.io/transfer/${withdrawHash}`}
-                          target={"_blank"}
-                          rel="noreferrer"
-                          className="text-blue-200 font-bold underline inline-block"
-                        >
-                          here
-                        </a>
-                      </p>
-                      <button
-                        className="rounded-md hover:text-slate-100 focus:text-slate-100  bg-slate-300 hover:bg-slate-400 focus:bg-slate-400 text-gray-800 outline-none border-2 border-slate-500 px-2 py-1.5 mt-3 text-sm"
-                        onClick={() => setWithdrawInProcess(false)}
-                      >
-                        Go back
-                      </button>
+                  {withdrawInProcess ? (
+                    <div className="text-white font-space rounded-t-2xl ease-in-out duration-200 rounded-b-md border-t-4 border-purple-800 absolute bg-[#111111] ring-1 ring-gray-100/10 left-0 bottom-0 w-full h-56 z-50">
+                      {withdrawHash ? (
+                        <div className="flex w-full h-full justify-center items-center">
+                          <div className="text-center text-lg">
+                            <p>
+                              Your cross-chain <b>withdrawal</b> has been sent
+                            </p>
+                            <p>
+                              Track transaction status{" "}
+                              <a
+                                href={`https://axelarscan.io/transfer/${withdrawHash}`}
+                                target={"_blank"}
+                                rel="noreferrer"
+                                className="text-blue-200 font-bold underline inline-block"
+                              >
+                                here
+                              </a>
+                            </p>
+                            <button
+                              className="rounded-md hover:text-slate-100 focus:text-slate-100  bg-slate-300 hover:bg-slate-400 focus:bg-slate-400 text-gray-800 outline-none border-2 border-slate-500 px-2 py-1.5 mt-3 text-sm"
+                              onClick={() => setWithdrawInProcess(false)}
+                            >
+                              Go back
+                            </button>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="flex flex-col gap-4 w-full h-full justify-center items-center text-xl font-bold">
+                          <div>
+                            <span className="loader mx-3"></span>
+                          </div>
+                          <div>Your withdrawal is in process </div>
+                        </div>
+                      )}
                     </div>
-                  </div>
-                ) : (
-                  <div className="flex w-full h-full justify-center items-center text-xl font-bold">
-                    Your withdrawal is in process...
-                  </div>
-                )}
-              </div>
-            ) : null}
-          </div>
+                  ) : null}
+                </div>
+              ) : (
+                <div className="pt-3 text-gray-200 text-lg">
+                  Uh Oh! Looks like you have not deposited anything to Moonyield
+                  yet.
+                </div>
+              )}
+            </div>
+          ) : null}
         </div>
       </div>
     </div>

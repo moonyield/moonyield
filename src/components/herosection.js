@@ -35,7 +35,7 @@ export default function HeroSection({ onEnterApp }) {
       <div className="flex mt-4 font-space font-medium justify-center">
         <button
           onClick={onEnterApp}
-          className=" bg-purple-600 p-3 px-5 rounded-lg text-xl"
+          className="bg-gradient-to-r from-pink-500 to-pink-600 p-3 px-5 rounded-lg text-xl"
         >
           Launch App
         </button>

@@ -50,7 +50,7 @@ export default function CurrentApy() {
     <div className="flex justify-center mt-2 ml-64 ">
       <div className="justify-end flex flex-row gap-2 rounded-md p-3">
         {isLoading ? (
-          <span className="inline-flex gap-2 items-center rounded-full bg-gradient-to-r from-pink-400/30 to-violet-400/30 px-3 py-0.5 text-sm font-medium text-indigo-100">
+          <span className="inline-flex gap-2 items-center rounded-full bg-gradient-to-r from-pink-400/30 to-violet-400/30 px-3 py-1 text-md font-medium text-indigo-100">
             <span class="relative flex h-3 w-3">
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
               <span class="relative inline-flex rounded-full h-3 w-3 bg-pink-500"></span>
@@ -60,7 +60,7 @@ export default function CurrentApy() {
             </div>
           </span>
         ) : (
-          <span className="inline-flex gap-2 items-center rounded-full bg-gradient-to-r from-pink-400/30 to-violet-400/30 px-3 py-0.5 text-sm font-medium text-indigo-100">
+          <span className="inline-flex gap-2 items-center rounded-full bg-gradient-to-r from-pink-400/30 to-violet-400/30 px-3 py-1 text-md font-medium text-indigo-100">
             <span class="relative flex h-3 w-3">
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
               <span class="relative inline-flex rounded-full h-3 w-3 bg-pink-500"></span>
