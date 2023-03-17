@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import NetworkSelector from "./DepositNetworkSelector";
 import WithdrawSelector from "./WithdrawNetworkSelector";
 import { useSigner, useNetwork, useSwitchNetwork } from "wagmi";
@@ -24,8 +24,7 @@ export default function FormWithdraw() {
   const vaultBalance = useVaultBalance(signer?._address);
 
   const { chain } = useNetwork();
-  const { chains, error, isLoading, pendingChainId, switchNetwork } =
-    useSwitchNetwork();
+  const { switchNetwork } = useSwitchNetwork();
   const [depositNetwork, setDepositNetwork] = useState(
     (() => {
       if (depositChains.map((c) => c.id).includes(chain?.id)) return chain;

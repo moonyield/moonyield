@@ -10,9 +10,6 @@ export default function FormDeposit() {
         <div className="flex gap-24 space-x-16 justify-center">
           <div className="mt-20 flex justify-center text-4xl font-semibold">
             Earn juicy 8% yield
-            {/* <span className="text-4xl font-semibold">
-              Earn juicy 8% yield
-            </span> */}
           </div>
           <div className="flex justify-center flex-col gap-3 ">
             <span>
