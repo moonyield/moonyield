@@ -1,18 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./components/header";
 import HeroSection from "./components/herosection";
-import FormWithdraw from "./components/form-withdraw";
-import Notification from "./components/NotificationBanner";
+import Main from "./components/main";
+import { useRef } from "react";
 
 const App = () => {
+  const scrollToRef = useRef();
+  const [showApp, setShowApp] = useState(false);
+
+  const handleEnterApp = () => {
+    setShowApp(true);
+    scrollToRef.current.scrollIntoView({ behavior: "smooth" });
+  };
   return (
-<<<<<<< Updated upstream
-    <div className="font-space">
-      <Header />
-      <HeroSection />
-      <FormWithdraw />
-      <Notification />
-=======
     <div className="font-space flex flex-col relative w-[100%] isolate bg-black">
       <svg
         className="absolute -inset-1 -z-10 h-full w-full stroke-gray-200/20 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
@@ -44,14 +44,17 @@ const App = () => {
         />
       </svg>
 
-      <div className="absolute inset-x-0 top-[25vh] -z-10 transform-gpu overflow-hidden blur-3xl">
+      <div
+        style={{ border: "1px solid red" }}
+        className="absolute inset-x-0 top-[25vh] -z-10 transform-gpu overflow-hidden blur-3xl"
+      >
         <svg
           className="relative left-[calc(50%+3rem)] h-[21.1875rem] max-w-none -translate-x-1/2 sm:left-[calc(50%+36rem)] sm:h-[42.3759rem]"
           viewBox="0 0 1155 678"
         >
           <path
             fill="url(#ecb5b0c9-546c-4772-8c71-4d3f06d544bc)"
-            fillOpacity=".25"
+            fillOpacity=".3"
             d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z"
           />
           <defs>
@@ -82,7 +85,6 @@ const App = () => {
       >
         <Main id="main-section" />
       </div>
->>>>>>> Stashed changes
     </div>
   );
 };

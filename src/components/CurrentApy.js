@@ -66,7 +66,7 @@ export default function CurrentApy() {
               <span class="relative inline-flex rounded-full h-3 w-3 bg-pink-500"></span>
             </span>
             <div className="text-center gap-2 flex text-gray-300 ">
-              Current Supply APY:
+              Current Supply APY
               <a
                 className="underline"
                 href="https://moonwell.fi/artemis/USDC.wh"

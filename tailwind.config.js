@@ -8,6 +8,8 @@ module.exports = {
     extend: {
       fontFamily: {
         space: ["Space Grotesk", ...defaultTheme.fontFamily.sans],
+        syne: ["Syne", ...defaultTheme.fontFamily.sans],
+        labrada: ["Labrada", ...defaultTheme.fontFamily.sans],
       },
     },
   },

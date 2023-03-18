@@ -3,8 +3,8 @@ import IERC20 from "../abi/erc20.json";
 import RemoteDispatchABI from "../abi/remote-dispatch";
 import Config from "../config";
 
-async function depositOnRemote(signer, amount, newBanner, chainID) {
-  console.log("depositing on", chainID);
+async function approveOnRemote(signer, amount, newBanner, chainID) {
+  console.log("approving");
   const user = signer._address;
   const axlUSDC = new Contract(Config[chainID].axlUSDC, IERC20, signer);
   const RemoteDispatch = new Contract(
@@ -26,15 +26,14 @@ async function depositOnRemote(signer, amount, newBanner, chainID) {
     throw Error("NOT ENOUGH axlUSDC");
   }
 
-  console.log("depositing...");
-  const tx = await RemoteDispatch.deposit(amountToDeposit, {
-    value: utils.parseEther(Config[chainID].gas),
+  await axlUSDC
+    .approve(RemoteDispatch.address, amountToDeposit)
+    .then((tx) => tx.wait());
+  newBanner({
+    message: `Approved axlUSDC for deposit.`,
+    status: "success",
   });
-
-  console.log("deposited");
-  console.log(tx);
-
-  return tx.hash;
+  console.log("approved.");
 }
 
-export default depositOnRemote;
+export default approveOnRemote;
