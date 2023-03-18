@@ -4,7 +4,7 @@ import Logo from "../assets/logo.png";
 
 export default function Header() {
   return (
-    <div className="fixed top-0 w-full bg-transparent">
+    <div className="fixed top-0 right-0 left-0 w-full z-50 bg-transparent">
       <div className="bg-transparent flex text-gray-200 relative m-4">
         <div>
           <div className="grow">

@@ -124,7 +124,7 @@ export default function FormWithdraw() {
   }
 
   return (
-    <div className="flex justify-center font-space ">
+    <div className="flex justify-center font-space backdrop-blur-md">
       <div className="flex flex-row rounded-md ring-1 w-2xl ring-gray-100/10 bg-gray-500/10 px-8 py-6 justify-center relative">
         <div className="flex flex-col divide-y-2 divide-dashed divide-gray-500/60 divide gap-2 pt-1 justify-center">
           <div className="flex justify-center mb-4 flex-col gap-3">
