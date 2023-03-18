@@ -81,8 +81,26 @@ const App = () => {
       </div>
       <div
         ref={scrollToRef}
-        className="flex h-[100vh] justify-center items-center"
+        className="flex relative isolate overflow-hidden h-[100vh] justify-center items-center"
       >
+        <svg
+          viewBox="0 0 1024 1024"
+          className="absolute blur-3xl opacity-40 top-1/2 left-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2 [mask-image:radial-gradient(closest-side,white,transparent)]"
+          aria-hidden="true"
+        >
+          <circle
+            cx={512}
+            cy={512}
+            r={450}
+            fill="url(#827591b1-ce8c-4110-b064-7cb85a0b1217)"
+            fillOpacity="0.55"
+          />
+          <defs>
+            <radialGradient id="827591b1-ce8c-4110-b064-7cb85a0b1217">
+              <stop stopColor="#E935C1" />
+            </radialGradient>
+          </defs>
+        </svg>
         <Main id="main-section" />
       </div>
     </div>
