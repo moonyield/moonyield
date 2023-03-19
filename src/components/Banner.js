@@ -1,7 +1,7 @@
 export default function Banner() {
   return (
-    <div>
-      <div className="pointer-events-none fixed max-w-5xl  z-50 animate ease-in-out top-2 right-[600px] sm:px-6 sm:pt-7 lg:px-8">
+    <div className="fixed inset-x-0 top-0 flex justify-center">
+      <div className="pointer-events-none max-w-5xl animate ease-in-out pt-6">
         <div className="pointer-events-auto flex flex-row items-center justify-between gap-x-6 ring-white/50 ring-[0.5px] bg-gray-100/5 py-2.5 px-6 sm:rounded-xl sm:py-3 sm:pr-3.5 sm:pl-4">
           <p className="text-sm leading-6 text-white">
             <div className="flex flex-row gap-3">

@@ -5,7 +5,6 @@ import Main from "./components/main";
 import { useRef } from "react";
 import Banner from "./components/Banner";
 
-
 const App = () => {
   const scrollToRef = useRef();
   const [showApp, setShowApp] = useState(false);
