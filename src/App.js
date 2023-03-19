@@ -3,6 +3,8 @@ import Header from "./components/header";
 import HeroSection from "./components/herosection";
 import Main from "./components/main";
 import { useRef } from "react";
+import Banner from "./components/Banner";
+
 
 const App = () => {
   const scrollToRef = useRef();
@@ -14,6 +16,7 @@ const App = () => {
   };
   return (
     <div className="font-space flex flex-col relative w-[100%] isolate bg-black">
+      <Banner />
       <svg
         className="absolute -inset-1 -z-10 h-full w-full stroke-gray-200/20 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
         aria-hidden="true"

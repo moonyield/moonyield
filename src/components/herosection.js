@@ -10,19 +10,39 @@ export default function HeroSection({ onEnterApp }) {
     <div className="flex h-[92vh] flex-col font-syne text-gray-200 justify-center">
       <div className="flex flex-row justify-center gap-3 ">
         <div className="hover:bg-gray-100/20 drop-shadow-sm border border-gray-100/20 hover:drop-shadow-md bg-gray-100/10 p-1.5 rounded-lg">
-          <img alt="avax" src={Avax} className="h-11 w-11" />
+          <img
+            alt="avax"
+            src={Avax}
+            className="h-11 w-11 pointer-events-none "
+          />
         </div>
         <div className="hover:bg-gray-100/20 drop-shadow-sm border border-gray-100/20 hover:drop-shadow-md bg-gray-100/10 p-1.5 rounded-lg">
-          <img alt="matic" src={Matic} className="h-11 w-11" />
+          <img
+            alt="matic"
+            src={Matic}
+            className="h-11 w-11  pointer-events-none "
+          />
         </div>
         <div className="hover:bg-gray-100/20 drop-shadow-sm border border-gray-100/20 hover:drop-shadow-md bg-gray-100/10 p-1.5 rounded-lg">
-          <img alt="arb" src={Arb} className="h-11 w-11" />
+          <img
+            alt="arb"
+            src={Arb}
+            className="h-11 w-11  pointer-events-none "
+          />
         </div>
         <div className="hover:bg-gray-100/20 drop-shadow-sm border border-gray-100/20 hover:drop-shadow-md bg-gray-100/10 p-1.5 rounded-lg">
-          <img alt="ftm" src={Ftm} className="h-11 w-11" />
+          <img
+            alt="ftm"
+            src={Ftm}
+            className="h-11 w-11  pointer-events-none "
+          />
         </div>
         <div className="hover:bg-gray-100/20 drop-shadow-sm border border-gray-100/20 hover:drop-shadow-md bg-gray-100/10 p-1.5 rounded-lg">
-          <img alt="bnb" src={Bnb} className="h-11 w-11" />
+          <img
+            alt="bnb"
+            src={Bnb}
+            className="h-11 w-11  pointer-events-none "
+          />
         </div>
       </div>
       <div className="text-gray-300 m-8 mt-2 mb-2  font-extrabold text-[46px] text-center">
